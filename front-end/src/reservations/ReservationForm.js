@@ -43,7 +43,7 @@ export default function ReservationForm({
           <label className="col-sm-3 col-form-label">Mobile Number</label>
           <div className="col-sm-8">
             <input
-              type="text"
+              type="number"
               name="mobile_number"
               className="form-control"
               id="mobile_number"
