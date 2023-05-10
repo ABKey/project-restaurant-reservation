@@ -81,6 +81,7 @@ function Dashboard({ date }) {
     );
   });
 
+  console.log(process.env.REACT_APP_API_URL);
   return (
     <main>
       <h1 className="text-center">Dashboard</h1>
