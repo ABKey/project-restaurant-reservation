@@ -24,21 +24,34 @@ const readReservation = (reservation_id) => {
 };
 
 const update = async (updatedTable, updatedReservation) => {
-  const trx = await knex.transaction();
-  return trx("tables")
+  // const trx = await knex.transaction();
+  // return trx("tables")
+  //   .select("*")
+  //   .where({ table_id: updatedTable.table_id })
+  //   .update(updatedTable, "*")
+  //   .then((updatedRecords) => updatedRecords[0])
+  //   .then(() => {
+  //     return trx("reservations")
+  //       .select("*")
+  //       .where({ reservation_id: updatedReservation.reservation_id })
+  //       .update(updatedReservation, "*")
+  //       .then((updatedResRecords) => updatedResRecords[0]);
+  //   })
+  //   .then(trx.commit)
+  //   .catch(trx.rollback);
+  return knex("tables")
     .select("*")
     .where({ table_id: updatedTable.table_id })
     .update(updatedTable, "*")
     .then((updatedRecords) => updatedRecords[0])
     .then(() => {
-      return trx("reservations")
+      return knex("reservations")
         .select("*")
         .where({ reservation_id: updatedReservation.reservation_id })
         .update(updatedReservation, "*")
         .then((updatedResRecords) => updatedResRecords[0]);
-    })
-    .then(trx.commit)
-    .catch(trx.rollback);
+    }
+    );
 };
 
 module.exports = {

@@ -80,7 +80,7 @@ const create = async (req, res, next) => {
 // This function uses the reservation id in the body data to see if a reservation matching the id exists in the database. if it does it stores that message as res.locals. If it no reservation is found in the database send the status and error message.
 const reservationExists = async (req, res, next) => {
   const { reservation_id } = req.body.data;
-  const reservation = await service.readReservation(reservation_id);
+  const reservation = await service.readReservation(+reservation_id);
   if (reservation) {
     res.locals.reservation = reservation;
     return next();
@@ -94,7 +94,7 @@ const reservationExists = async (req, res, next) => {
 //  This validation searches the database for a table with the matching id. if a table is found it is stored in res.locals. if no matching id is found send the status and error message
 const tableExists = async (req, res, next) => {
   const { table_id } = req.params;
-  const table = await service.read(table_id);
+  const table = await service.read(+table_id);
   if (table) {
     res.locals.table = table;
     return next();
@@ -109,7 +109,7 @@ const tableExists = async (req, res, next) => {
 const canTableFitParty = (req, res, next) => {
   const { people } = res.locals.reservation;
   const { capacity } = res.locals.table;
-  if (people > capacity) {
+  if (+people > +capacity) {
     return next({
       status: 400,
       message: "Table capacity is to small to fit your party size",
@@ -148,7 +148,7 @@ const isReservationAlreadySeated = (req, res, next) => {
 // retrieves the reservation from the database with the matching id. if no reservation is found send the status error message
 const findReservation = async (req, res, next) => {
   const { reservation_id } = res.locals.table;
-  const reservation = await service.readReservation(reservation_id);
+  const reservation = await service.readReservation(+reservation_id);
   if (reservation) {
     res.locals.reservation = reservation;
     return next();
