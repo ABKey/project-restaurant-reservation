@@ -81,9 +81,10 @@ function Dashboard({ date }) {
     );
   });
 
+  console.log(REACT_APP_API_BASE_URL);
   return (
     <main>
-      <h1 className="text-center">Dashboard1</h1>
+      <h1 className="text-center">Dashboard</h1>
       <div>
         <div className="text-center">
           <button
