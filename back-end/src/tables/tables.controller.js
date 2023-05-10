@@ -101,7 +101,7 @@ const tableExists = async (req, res, next) => {
   }
   next({
     status: 404,
-    message: `No table_id matching ${table_id} forund in the database `,
+    message: `No table_id matching ${table_id} found in the database `,
   });
 };
 

@@ -17,7 +17,6 @@ export default function TableList({ table, setTablesError }) {
       try {
         await finishTable(table.table_id, abortController.signal);
         history.push(`/dashboard`);
-        window.location.reload();
       } catch (error) {
         setTablesError([error.message]);
       }
