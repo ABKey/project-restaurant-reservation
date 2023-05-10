@@ -67,6 +67,7 @@ function Dashboard({ date }) {
         setReservationsError([error.message]);
       }
     };
+    console.log("help");
     loadData();
     return () => abortController.abort();
   }, []);
